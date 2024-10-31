@@ -19,7 +19,9 @@
     "@radix-ui/react-scroll-area": "^1.1.0",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.2",
     "@types/bcryptjs": "^2.4.6",
+    "@types/gsap": "^3.0.0",
     "@types/node": "^22.5.5",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
@@ -30,9 +32,11 @@
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
+    "framer-motion": "^11.11.10",
+    "gsap": "^3.12.5",
     "jose": "^5.9.2",
     "lucide-react": "^0.441.0",
-    "next": "15.0.0-canary.190",
+    "next": "15.0.2",
     "postcss": "^8.4.47",
     "postgres": "^3.4.4",
     "react": "19.0.0-rc-cd22717c-20241013",
@@ -45,5 +49,21 @@
     "tailwindcss-react-aria-components": "1.1.5",
     "typescript": "^5.6.2",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "critters": "^0.0.25"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "19.0.0-rc-cd22717c-20241013",
+        "react-dom": "19.0.0-rc-cd22717c-20241013"
+      },
+      "ignoreMissing": [
+        "@types/react",
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

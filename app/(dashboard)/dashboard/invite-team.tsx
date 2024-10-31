@@ -30,25 +30,26 @@ export function InviteTeamMember() {
   >(inviteTeamMember, { error: '', success: '' });
 
   return (
-    <Card>
+    <Card className="bg-[#000000] border-[#1d1d1d]">
       <CardHeader>
-        <CardTitle>Invite Team Member</CardTitle>
+        <CardTitle className="text-[#fafafa]">Convidar Membro</CardTitle>
       </CardHeader>
       <CardContent>
         <form action={inviteAction} className="space-y-4">
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-[#fafafa]">Email</Label>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="Enter email"
+              placeholder="Digite o email do novo membro"
               required
               disabled={!isOwner}
+              className="bg-[#1d1d1d] border-[#333333] text-[#fafafa] placeholder:text-[#666666] focus:border-[#333333] focus:ring-1 focus:ring-[#333333]"
             />
           </div>
           <div>
-            <Label>Role</Label>
+            <Label className="text-[#fafafa]">Função</Label>
             <RadioGroup
               defaultValue="member"
               name="role"
@@ -56,44 +57,52 @@ export function InviteTeamMember() {
               disabled={!isOwner}
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="member" id="member" />
-                <Label htmlFor="member">Member</Label>
+                <RadioGroupItem 
+                  value="member" 
+                  id="member"
+                  className="border-[#333333] text-[#fafafa]"
+                />
+                <Label htmlFor="member" className="text-[#888888]">Membro</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="owner" id="owner" />
-                <Label htmlFor="owner">Owner</Label>
+                <RadioGroupItem 
+                  value="owner" 
+                  id="owner"
+                  className="border-[#333333] text-[#fafafa]"
+                />
+                <Label htmlFor="owner" className="text-[#888888]">Proprietário</Label>
               </div>
             </RadioGroup>
           </div>
           {inviteState?.error && (
-            <p className="text-red-500">{inviteState.error}</p>
+            <p className="text-sm text-red-500">{inviteState.error}</p>
           )}
           {inviteState?.success && (
-            <p className="text-green-500">{inviteState.success}</p>
+            <p className="text-sm text-green-500">{inviteState.success}</p>
           )}
           <Button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 text-white"
+            className="w-full bg-[#1d1d1d] hover:bg-[#333333] text-[#fafafa] border border-[#333333] transition-colors duration-200"
             disabled={isInvitePending || !isOwner}
           >
             {isInvitePending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Inviting...
+                Enviando convite...
               </>
             ) : (
               <>
                 <PlusCircle className="mr-2 h-4 w-4" />
-                Invite Member
+                Convidar Membro
               </>
             )}
           </Button>
         </form>
       </CardContent>
       {!isOwner && (
-        <CardFooter>
-          <p className="text-sm text-muted-foreground">
-            You must be a team owner to invite new members.
+        <CardFooter className="bg-[#1d1d1d] border-t border-[#333333]">
+          <p className="text-sm text-[#666666]">
+            Apenas proprietários podem convidar novos membros.
           </p>
         </CardFooter>
       )}

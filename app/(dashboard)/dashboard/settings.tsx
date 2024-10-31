@@ -26,19 +26,27 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
 
   return (
     <section className="flex-1 p-4 lg:p-8">
-      <h1 className="text-lg lg:text-2xl font-medium mb-6">Team Settings</h1>
-      <Card className="mb-8">
+      <h1 className="text-lg lg:text-2xl font-medium mb-6 text-white">Team Settings</h1>
+      
+      <Button 
+        className="mb-8 bg-gradient-to-r from-purple-600/30 via-blue-500/30 to-indigo-600/30 border border-white/20 text-white hover:text-white/90 hover:border-white/30 hover:bg-gradient-to-r hover:from-purple-600/40 hover:via-blue-500/40 hover:to-indigo-600/40 shadow-lg shadow-purple-500/20 transition-all duration-300 backdrop-blur-sm font-medium"
+        onClick={() => window.open('https://platform.laudos.ai', '_blank')}
+      >
+        Acessar a Plataforma de Laudos
+      </Button>
+
+      <Card className="mb-8 bg-black border-white/5">
         <CardHeader>
-          <CardTitle>Team Subscription</CardTitle>
+          <CardTitle className="text-white">Team Subscription</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div className="mb-4 sm:mb-0">
-                <p className="font-medium">
+                <p className="font-medium text-white">
                   Current Plan: {teamData.planName || 'Free'}
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-400">
                   {teamData.subscriptionStatus === 'active'
                     ? 'Billed monthly'
                     : teamData.subscriptionStatus === 'trialing'
@@ -55,9 +63,9 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
           </div>
         </CardContent>
       </Card>
-      <Card className="mb-8">
+      <Card className="mb-8 bg-black border-white/5">
         <CardHeader>
-          <CardTitle>Team Members</CardTitle>
+          <CardTitle className="text-white">Team Members</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
@@ -77,10 +85,10 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">
+                    <p className="font-medium text-white">
                       {getUserDisplayName(member.user)}
                     </p>
-                    <p className="text-sm text-muted-foreground capitalize">
+                    <p className="text-sm text-gray-400 capitalize">
                       {member.role}
                     </p>
                   </div>
@@ -93,6 +101,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
                       variant="outline"
                       size="sm"
                       disabled={isRemovePending}
+                      className="hover:bg-white/10"
                     >
                       {isRemovePending ? 'Removing...' : 'Remove'}
                     </Button>

@@ -66,5 +66,12 @@
 
   body {
     @apply bg-background text-foreground;
+    position: relative;
+    z-index: 0;
   }
+}
+
+/* Remove any potential overlays at the bottom of the page */
+body::after {
+  content: none;
 }
