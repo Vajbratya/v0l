@@ -32,7 +32,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
         className="mb-8 bg-gradient-to-r from-purple-600/30 via-blue-500/30 to-indigo-600/30 border border-white/20 text-white hover:text-white/90 hover:border-white/30 hover:bg-gradient-to-r hover:from-purple-600/40 hover:via-blue-500/40 hover:to-indigo-600/40 shadow-lg shadow-purple-500/20 transition-all duration-300 backdrop-blur-sm font-medium"
         onClick={() => window.open('https://platform.laudos.ai', '_blank')}
       >
-        Acessar a Plataforma de Laudos
+        Acessar a Plataforma Laudos.AI
       </Button>
 
       <Card className="mb-8 bg-black border-white/5">

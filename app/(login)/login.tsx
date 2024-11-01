@@ -11,8 +11,9 @@ import { Loader2, Eye, EyeOff, ChevronDown } from 'lucide-react';
 import { signIn, signUp } from './actions';
 import { ActionState } from '@/lib/auth/middleware';
 import { toast } from '@/hooks/use-toast';
-import { motion } from 'framer-motion';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
+
+type MotionDivProps = HTMLMotionProps<"div">;
 
 export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
   const searchParams = useSearchParams();
@@ -64,43 +65,63 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
   };
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Improved glowing orbs */}
-      <motion.div 
-        initial={{ opacity: 0.3, scale: 1 }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#7CFFD4]/20 rounded-full filter blur-[100px]"
-      />
-      
+    <div className="min-h-[100dvh] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+      {/* Enhanced animated background */}
       <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] mix-blend-soft-light" />
       <div className="absolute inset-0 bg-gradient-to-br from-[#7CFFD4]/10 via-transparent to-orange-500/10 animate-pulse" />
       
+      {/* Improved glowing orbs */}
       <motion.div 
-        className="sm:mx-auto sm:w-full sm:max-w-md relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        {...{
+          className: "absolute top-1/4 left-1/4 w-64 h-64 bg-[#7CFFD4]/20 rounded-full filter blur-[100px]",
+          animate: {
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          },
+          transition: {
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }
+        } as MotionDivProps}
+      />
+      <motion.div 
+        {...{
+          className: "absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full filter blur-[100px]",
+          animate: {
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          },
+          transition: {
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }
+        } as MotionDivProps}
+      />
+      
+      <motion.div 
+        {...{
+          className: "sm:mx-auto sm:w-full sm:max-w-md relative z-10",
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5 }
+        } as MotionDivProps}
       >
         <div className="flex flex-col items-center">
           {/* Animated logo */}
           <motion.div 
-            className="w-32 h-32 mb-8"
-            animate={{
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            {...{
+              className: "w-32 h-32 mb-8",
+              animate: {
+                rotate: [0, 360],
+              },
+              transition: {
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }
+            } as MotionDivProps}
           >
             <svg
               viewBox="0 0 100 100"
@@ -121,10 +142,12 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
       </motion.div>
 
       <motion.div 
-        className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        {...{
+          className: "mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10",
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5, delay: 0.2 }
+        } as MotionDivProps}
       >
         <div className="bg-black/60 backdrop-blur-xl py-10 px-12 shadow-2xl ring-1 ring-white/10 rounded-3xl relative overflow-hidden group">
           {/* Enhanced animated border gradient */}
@@ -136,7 +159,7 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
             <input type="hidden" name="priceId" value={priceId || ''} />
             <input type="hidden" name="inviteId" value={inviteId || ''} />
             
-            <AnimatePresence mode="popLayout" initial={false}>
+            <AnimatePresence>
               {mode === 'signup' && (
                 <>
                   <motion.div
